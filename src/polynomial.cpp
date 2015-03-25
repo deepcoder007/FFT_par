@@ -1,15 +1,19 @@
 #include"polynomial.h"
+#include<cstdio>
+#include<cstdlib>
+#include<iostream>
+using namespace std;
 
 
 polynomial::polynomial(int n=1)
 {
 	degree=n;
-	coeff = new int[n+1];
+	coeff = new double[n+1];
 }
 
 float polynomial::get_coeff(int n)
 {
-	if( n> degree )
+	if( n>= degree )
 		return 0;
 	else 
 		return coeff[n];
@@ -17,10 +21,28 @@ float polynomial::get_coeff(int n)
 
 void polynomial::set_coeff(int n,float v)
 {
-	if( n > degree )
+	if( n >= degree )
 		return;
 	else
-		return coeff[n]=v;
+	{
+		coeff[n]=v;
+		return;
+	}
 }
 
 
+int polynomial::get_degree()
+{
+	return degree;
+}
+
+void polynomial::print()
+{
+	cout<<"The coefficients are: ";
+	int i;
+	for(i=0;i<degree;i++)
+	{
+		cout<<coeff[i]<<" , ";
+	}
+	cout<<endl;
+}

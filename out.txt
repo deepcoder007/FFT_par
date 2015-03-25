@@ -1,0 +1,91 @@
+g++ -I /home/vibhanshu/Desktop/FFT/include -c /home/vibhanshu/Desktop/FFT/src/Complex.cpp -o /home/vibhanshu/Desktop/FFT/obj/Complex.o
+In file included from /home/vibhanshu/Desktop/FFT/src/Complex.cpp:2:0:
+/home/vibhanshu/Desktop/FFT/include/Complex.h:11:28: error: return type specification for constructor invalid
+  Complex Complex(Complex& a);    // the copy constructor
+                            ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:11:36: error: return type specification for constructor invalid
+ Complex Complex::Complex(Complex& a)
+                                    ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp: In member function ‘Complex Complex::operator+(Complex)’:
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:39:39: error: no matching function for call to ‘Complex::Complex(Complex)’
+  return Complex(real+a.re(),img+a.im());
+                                       ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:39:39: note: candidates are:
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:11:9: note: Complex::Complex(Complex&)
+ Complex Complex::Complex(Complex& a)
+         ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:11:9: note:   no known conversion for argument 1 from ‘Complex’ to ‘Complex&’
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:5:1: note: Complex::Complex(double, double)
+ Complex::Complex(double a=0,double b=0)
+ ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:5:1: note:   no known conversion for argument 1 from ‘Complex’ to ‘double’
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp: In member function ‘Complex Complex::operator-(Complex)’:
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:44:39: error: no matching function for call to ‘Complex::Complex(Complex)’
+  return Complex(real-a.re(),img-a.im());
+                                       ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:44:39: note: candidates are:
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:11:9: note: Complex::Complex(Complex&)
+ Complex Complex::Complex(Complex& a)
+         ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:11:9: note:   no known conversion for argument 1 from ‘Complex’ to ‘Complex&’
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:5:1: note: Complex::Complex(double, double)
+ Complex::Complex(double a=0,double b=0)
+ ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:5:1: note:   no known conversion for argument 1 from ‘Complex’ to ‘double’
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp: In member function ‘Complex Complex::operator-()’:
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:49:27: error: no matching function for call to ‘Complex::Complex(Complex)’
+  return Complex(-real,-img);
+                           ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:49:27: note: candidates are:
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:11:9: note: Complex::Complex(Complex&)
+ Complex Complex::Complex(Complex& a)
+         ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:11:9: note:   no known conversion for argument 1 from ‘Complex’ to ‘Complex&’
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:5:1: note: Complex::Complex(double, double)
+ Complex::Complex(double a=0,double b=0)
+ ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:5:1: note:   no known conversion for argument 1 from ‘Complex’ to ‘double’
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp: In member function ‘Complex Complex::operator*(Complex)’:
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:54:69: error: no matching function for call to ‘Complex::Complex(Complex)’
+  return Complex( real*a.re() - img*a.im(), real*a.im() + img*a.re() );
+                                                                     ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:54:69: note: candidates are:
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:11:9: note: Complex::Complex(Complex&)
+ Complex Complex::Complex(Complex& a)
+         ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:11:9: note:   no known conversion for argument 1 from ‘Complex’ to ‘Complex&’
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:5:1: note: Complex::Complex(double, double)
+ Complex::Complex(double a=0,double b=0)
+ ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:5:1: note:   no known conversion for argument 1 from ‘Complex’ to ‘double’
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp: In member function ‘Complex Complex::operator/(Complex)’:
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:59:144: error: no matching function for call to ‘Complex::Complex(Complex)’
+  return Complex( (real*a.re() + img*a.im())/( a.re()*a.re() + a.im()*a.im()) , ( img*a.re() - real*a.im() )/ ( a.re()*a.re() + a.im()*a.im() ) );
+                                                                                                                                                ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:59:144: note: candidates are:
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:11:9: note: Complex::Complex(Complex&)
+ Complex Complex::Complex(Complex& a)
+         ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:11:9: note:   no known conversion for argument 1 from ‘Complex’ to ‘Complex&’
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:5:1: note: Complex::Complex(double, double)
+ Complex::Complex(double a=0,double b=0)
+ ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:5:1: note:   no known conversion for argument 1 from ‘Complex’ to ‘double’
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp: In member function ‘Complex Complex::pow(int)’:
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:70:48: error: no matching function for call to ‘Complex::Complex(Complex)’
+  return Complex( ans*cos(n*cd) , ans*sin(n*sd) );
+                                                ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:70:48: note: candidates are:
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:11:9: note: Complex::Complex(Complex&)
+ Complex Complex::Complex(Complex& a)
+         ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:11:9: note:   no known conversion for argument 1 from ‘Complex’ to ‘Complex&’
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:5:1: note: Complex::Complex(double, double)
+ Complex::Complex(double a=0,double b=0)
+ ^
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:5:1: note:   no known conversion for argument 1 from ‘Complex’ to ‘double’
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp: In member function ‘void Complex::print()’:
+/home/vibhanshu/Desktop/FFT/src/Complex.cpp:76:2: error: ‘cout’ was not declared in this scope
+  cout<<" "<<real<<"+j"<<img;
+  ^
+make: *** [/home/vibhanshu/Desktop/FFT/obj/Complex.o] Error 1
