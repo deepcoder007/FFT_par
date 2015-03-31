@@ -17,8 +17,8 @@ polynomial multiply(polynomial a,polynomial b)
 	{
 		for( j=0; j<=i ; j++ )    // for each of the term in a
 		{
-	//		if( j>=a.get_degree() || (i-j)>=b.get_degree() )   // if corresponding degree does not exist
-	//			continue;
+			if( j>=a.get_degree() || (i-j)>=b.get_degree() )   // if corresponding degree does not exist
+				continue;
 			p.set_coeff( i , p.get_coeff(i) + a.get_coeff(j)*b.get_coeff(i-j) );
 		}
 	}

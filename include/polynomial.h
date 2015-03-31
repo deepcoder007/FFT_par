@@ -10,8 +10,9 @@ private:
 public:
 	polynomial(int n);
 	float get_coeff(int n);   // returns the coeff. to the corresponding power
-	void set_coeff(int n,float v);     // set the coefficient
+	void set_coeff(int n,double v);     // set the coefficient
 	int get_degree();
+	void set_degree(int n);
 	void print();
 };
 

@@ -4,6 +4,11 @@
 #include<iostream>
 using namespace std;
 
+int min(int a,int b)
+{
+	if( a<b ) return a;
+	else return b;
+}
 
 polynomial::polynomial(int n=1)
 {
@@ -19,7 +24,7 @@ float polynomial::get_coeff(int n)
 		return coeff[n];
 }
 
-void polynomial::set_coeff(int n,float v)
+void polynomial::set_coeff(int n,double v)
 {
 	if( n >= degree )
 		return;
@@ -46,3 +51,22 @@ void polynomial::print()
 	}
 	cout<<endl;
 }
+
+void polynomial::set_degree(int n)
+{
+	double* c2=new double[n+1];
+	for(int i=0;i<=n; i++)
+	{
+		if( i>=degree )
+			c2[i]=0.0;
+		else
+			c2[i]=coeff[i];
+	}
+	delete[] coeff;
+	coeff = c2;
+	degree = n;
+}
+
+
+
+
