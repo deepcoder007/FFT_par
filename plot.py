@@ -20,5 +20,5 @@ for x in f:
 #plt.show()
 
 #plt.plot(range(len(v1)),v1,'r',range(len(v2)),v2,'g',range(len(v3)),v3,'b');
-plt.plot(range(len(v1)),v1,'r',range(len(v2)),v2,'g');
+plt.plot(range(len(v1)),v3,'r',range(len(v2)),v2,'g');
 plt.show()
