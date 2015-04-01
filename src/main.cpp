@@ -12,6 +12,7 @@ extern polynomial multiply(polynomial a,polynomial b);
 extern vector<Complex> get_coeff(polynomial p);
 extern vector<Complex> recur_FFT(vector<Complex> v);
 extern polynomial multiply_fft(polynomial a,polynomial b);
+extern polynomial multiply_fft_par(polynomial a,polynomial b);
 
 void prn(vector<Complex> v)
 {
@@ -23,29 +24,56 @@ void prn(vector<Complex> v)
 	}
 }
 
+vector<int> power2;   // a vector to store the powers of 2
+
+
 int main(int argc,char* argv[])
 {
+	srand(time(NULL));
+	int i;
+	for(i=0;i<50;i++)
+		power2.push_back(1<<i);
 	cout<<"Program started : "<<endl;
-	int n=atoi(argv[1]);
-	polynomial a(n);
-	polynomial b(n);
-	a.set_coeff(0,11);
-	a.set_coeff(1,14);
-	a.set_coeff(2,16);
-	a.set_coeff(3,1);
-	b.set_coeff(0,10);
-	b.set_coeff(1,10);
-	b.set_coeff(2,10);
-	b.set_coeff(3,10);
-//	a.print();
-//	b.print();
+	int tmp=atoi(argv[1]);
+	int n;
+	for(i=0;i<50;i++)
+	{
+		if( power2[i]>=tmp )   
+		{
+			n=power2[i];
+			break;
+		}
+	}
+	polynomial a(n),a1(n),a2(n);
+	polynomial b(n),b1(n),b2(n);
+	for(i=0;i<n;i++)
+	{
+		a.set_coeff(i,rand()%10000);
+		a1.set_coeff(i,a.get_coeff(i));
+		a2.set_coeff(i,a.get_coeff(i));
+		b.set_coeff(i,rand()%10000);
+		b1.set_coeff(i,b.get_coeff(i));
+		b2.set_coeff(i,b.get_coeff(i));
+	}
+	time_t t1,t2;
 	cout<<"-------------------------"<<endl;
 	cout<<"Naive: "<<endl;
-//	multiply(a,b).print();
+	t1=clock();
+//	multiply(a1,b1);
+	t2=clock();
+	cout<<"Time taken by naive method : "<<t2-t1<<endl;
 	cout<<"-------------------------"<<endl;
 	cout<<"FFT: "<<endl;
-	multiply_fft(a,b).print();
+	t1=clock();
+	multiply_fft(a,b);
+	t2=clock();
+	cout<<"Time taken by FFT :  "<<t2-t1<<endl;
 	cout<<"-------------------------"<<endl;
+	cout<<"FFT(parallel):  "<<endl;
+	t1=clock();
+	multiply_fft_par(a2,b2);
+	t2=clock();
+	cout<<"Time taken by FFT in parallel: "<<t2-t1<<endl;
 	cout<<"-------------------------"<<endl;
 	cout<<"-------------------------"<<endl;
 }
