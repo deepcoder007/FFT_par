@@ -13,7 +13,7 @@ extern vector<Complex> get_coeff(polynomial p);
 
 static int level=0;
 
-vector<Complex> par_recur_FFT(vector<Complex> a)
+vector<Complex> par_recur_FFT(vector<Complex>& a)
 {
 	level++;
 	vector<Complex> out;
@@ -39,8 +39,8 @@ vector<Complex> par_recur_FFT(vector<Complex> a)
 	vector<Complex> y0,y1;
 //	y0= par_recur_FFT(a0);
 //	y1= par_recur_FFT(a1);
-	thread t1( [&y0,a0](){  y0 = par_recur_FFT(a0); });
-	thread t2( [&y1,a1](){  y1 = par_recur_FFT(a1); });
+	thread t1( [&y0,&a0](){  y0 = par_recur_FFT(a0); });
+	thread t2( [&y1,&a1](){  y1 = par_recur_FFT(a1); });
 	t1.join();
 	t2.join();
 	int k;
@@ -53,7 +53,7 @@ vector<Complex> par_recur_FFT(vector<Complex> a)
 	return out;
 }
 
-vector<Complex> par_un_recur_FFT(vector<Complex> a)
+vector<Complex> par_un_recur_FFT(vector<Complex>& a)
 {
 	level++;
 	vector<Complex> out;
@@ -79,8 +79,8 @@ vector<Complex> par_un_recur_FFT(vector<Complex> a)
 	vector<Complex> y0,y1;
 //	vector<Complex> y0= par_un_recur_FFT(a0);
 //	vector<Complex> y1= par_un_recur_FFT(a1);
-	thread t1( [&y0,a0](){  y0 = par_un_recur_FFT(a0); });
-	thread t2( [&y1,a1](){  y1 = par_un_recur_FFT(a1); });
+	thread t1( [&y0,&a0](){  y0 = par_un_recur_FFT(a0); });
+	thread t2( [&y1,&a1](){  y1 = par_un_recur_FFT(a1); });
 	t1.join();
 	t2.join();
 	int k;
@@ -93,7 +93,7 @@ vector<Complex> par_un_recur_FFT(vector<Complex> a)
 	return out;
 }
  
-vector<Complex> par_rev_FFT(vector<Complex> a)
+vector<Complex> par_rev_FFT(vector<Complex>& a)
 {
 	vector<Complex> out;
 	out = par_un_recur_FFT(a);
@@ -118,8 +118,11 @@ polynomial multiply_fft_par(polynomial a,polynomial b)
 	vector<Complex> v1,v2,ans2;
 //	vector<Complex> v1= par_recur_FFT(get_coeff(a));
 //	vector<Complex> v2= par_recur_FFT(get_coeff(b));
-	thread t1( [&v1,a](){  v1= par_recur_FFT(get_coeff(a)); });
-	thread t2( [&v2,b](){  v2= par_recur_FFT(get_coeff(b)); });
+	vector<Complex> co1,co2;
+	co1=get_coeff(a);
+	co2=get_coeff(b);
+	thread t1( [&v1,&co1](){  v1= par_recur_FFT(co1); });
+	thread t2( [&v2,&co2](){  v2= par_recur_FFT(co2); });
 	t1.join();
 	t2.join();
 	vector<Complex> ans;

@@ -26,6 +26,15 @@ void prn(vector<Complex> v)
 
 vector<int> power2;   // a vector to store the powers of 2
 
+void print_file(FILE* ptr, polynomial p)
+{
+	int n=p.get_degree();
+	for(int i=0;i<n;i++)
+		if( p.get_coeff(i)>0.001 )
+			fprintf(ptr,"%lf\n",p.get_coeff(i));
+}
+
+
 
 int main(int argc,char* argv[])
 {
@@ -55,24 +64,38 @@ int main(int argc,char* argv[])
 		b1.set_coeff(i,b.get_coeff(i));
 		b2.set_coeff(i,b.get_coeff(i));
 	}
+	FILE* ptr;
+	polynomial out(100);
 	time_t t1,t2;
 	cout<<"-------------------------"<<endl;
 	cout<<"Naive: "<<endl;
 	t1=clock();
-//	multiply(a1,b1);
+   	out= multiply(a1,b1);
 	t2=clock();
+	ptr=fopen("naive.txt","w");
+	print_file(ptr,out);
+	fclose(ptr);
+	//out.print();
 	cout<<"Time taken by naive method : "<<t2-t1<<endl;
 	cout<<"-------------------------"<<endl;
 	cout<<"FFT: "<<endl;
 	t1=clock();
-	multiply_fft(a,b);
+	out =multiply_fft(a,b);
 	t2=clock();
+	ptr=fopen("fft.txt","w");
+	print_file(ptr,out);
+	fclose(ptr);
+	//out.print();
 	cout<<"Time taken by FFT :  "<<t2-t1<<endl;
 	cout<<"-------------------------"<<endl;
 	cout<<"FFT(parallel):  "<<endl;
 	t1=clock();
-	multiply_fft_par(a2,b2);
+	out= multiply_fft_par(a2,b2);
 	t2=clock();
+	ptr=fopen("fft_par.txt","w");
+	print_file(ptr,out);
+	fclose(ptr);
+	//out.print();
 	cout<<"Time taken by FFT in parallel: "<<t2-t1<<endl;
 	cout<<"-------------------------"<<endl;
 	cout<<"-------------------------"<<endl;

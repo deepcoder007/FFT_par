@@ -16,7 +16,8 @@ SRC=$(SRC_PATH)/Complex.cpp \
 	$(SRC_PATH)/poly_mult_naive.cpp \
 	$(SRC_PATH)/polynomial.cpp \
 	$(SRC_PATH)/fft.cpp  \
-	$(SRC_PATH)/fft_par.cpp
+	$(SRC_PATH)/fft_par.cpp  \
+	$(SRC_PATH)/test2.cpp
 
 
 OBJ=$(OBJ_PATH)/Complex.o \
@@ -24,11 +25,22 @@ OBJ=$(OBJ_PATH)/Complex.o \
 	$(OBJ_PATH)/poly_mult_naive.o \
 	$(OBJ_PATH)/polynomial.o  \
 	$(OBJ_PATH)/fft_par.o   \
-	$(OBJ_PATH)/fft.o
+	$(OBJ_PATH)/fft.o  \
+
+
+OBJ2=$(OBJ_PATH)/Complex.o \
+	$(OBJ_PATH)/poly_mult_naive.o \
+	$(OBJ_PATH)/polynomial.o  \
+	$(OBJ_PATH)/fft_par.o   \
+	$(OBJ_PATH)/fft.o  \
+	$(OBJ_PATH)/test2.o
 
 INCLUDES= -I $(INCLUDE_PATH)
 
 prog: $(OBJ)
+	$(CC) -std=c++11 -pthread $^  -o $(BIN_PATH)/$@
+
+test: $(OBJ2)
 	$(CC) -std=c++11 -pthread $^  -o $(BIN_PATH)/$@
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp
@@ -37,3 +49,4 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.cpp
 clean:
 	rm ./obj/*
 	rm ./bin/prog
+	rm ./bin/test
